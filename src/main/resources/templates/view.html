@@ -7,6 +7,7 @@
 <style>
     table {
         border-collapse: collapse;
+        font-size: 1.2rem;
         width: 100%;
     }
 
@@ -27,14 +28,47 @@
         text-decoration: none;
     }
 
-    .edit-link {
+    a{
+
         padding: 4px 8px;
-        background-color: #007bff;
+        background-color: #4CAF50;
         color: #fff;
         border-radius: 4px;
+        margin: 10px;
+    }
+    img {
+        height: 150px;
+        aspect-ratio: 1/1;
+        width: auto;
+        object-fit: cover;
+    }
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 1rem;
+        background-color: #4CAF50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+        background-color: #45a049;
+    }
+
+    .button-container {
+        display: flex;
+        margin-top: 20px;
     }
 </style>
 <body >
+<div class="button-container">
+    <a href="/" class="button">Home</a>
+    <br />
+    <a href="/add" class="button">Add Drinks</a>
+</div>
 <table>
     <tr>
         <th>ID</th>
@@ -44,6 +78,7 @@
         <th>Main 2</th>
         <th>Amount 2</th>
         <th>Directions</th>
+        <th>Image</th>
         <th>Actions</th>
 
     </tr>
@@ -55,7 +90,9 @@
         <td th:text="${drink.main2}"></td>
         <td th:text="${drink.amount2}"></td>
         <td th:text="${drink.directions}"></td>
-        <td> <a th:href="@{/edit/{id}(id=${drink.id})}">Edit</a> | <a th:href="@{/delete/{id}(id=${drink.id})}">Delete</a> </td>
+        <td><img th:src="${drink.iURL}" /></td>
+
+        <td> <a th:href="@{/edit/{id}(id=${drink.id})}">Edit</a>  <a th:href="@{/delete/{id}(id=${drink.id})}">Delete</a> </td>
     </tr>
 </table>
 

@@ -5,5 +5,6 @@ CREATE TABLE easy_drinks(
 	amount1 double,
 	main2 VARCHAR(255),
 	amount2 double,
-	directions VARCHAR(255)
+	directions VARCHAR(255),
+    iURL VARCHAR(255)
 );
