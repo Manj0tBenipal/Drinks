@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>edit</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    form {
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<form method="post" th:action="@{/edit}" th:object="${drink}">
+  <input type="hidden" th:field="*{id}">
+  <label>Name: <input type="text" th:field="*{name}" /></label><br>
+  <label>Main 1: <input type="text" th:field="*{main1}" /></label><br>
+  <label>Amount 1: <input type="number" step="0.01" th:field="*{amount1}" /></label><br>
+  <label>Main 2: <input type="text" th:field="*{main2}" /></label><br>
+  <label>Amount 2: <input type="number" step="0.01" th:field="*{amount2}" /></label><br>
+  <label>Directions: <textarea th:field="*{directions}"></textarea></label><br>
+  <button type="submit">Save Changes</button>
+</form>
+</body>
+</html>

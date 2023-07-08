@@ -33,4 +33,32 @@ public class DrinkRepository {
 		jdbc.update(query, parameters);
 
 	}
+
+	public Drink findById(int id){
+		String query = "select * from easy_drinks where id=:id";
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		parameters.addValue("id", id);
+		ArrayList<Drink> drinks = (ArrayList<Drink>)jdbc.query(query,parameters,new BeanPropertyRowMapper<>(Drink.class));
+		Drink drink = drinks.get(0);
+		return drink;
+	}
+	public void updateDrink(Drink drink){
+		MapSqlParameterSource parameters =  new MapSqlParameterSource();
+		String query = "Update easy_drinks set name=:na, amount1=:a1, main1=:m1, main2=:m2, amount2=:a2, directions=:dir where id=:id;";
+		parameters.addValue("id", drink.getId());
+		parameters.addValue("na", drink.getName());
+		parameters.addValue("m1", drink.getMain1());
+		parameters.addValue("a1", drink.getAmount1());
+		parameters.addValue("m2", drink.getMain2());
+		parameters.addValue("a2", drink.getAmount2());
+		parameters.addValue("dir", drink.getDirections());
+		jdbc.update(query, parameters);
+	}
+
+	public void deleteById(int id){
+		MapSqlParameterSource parameters =  new MapSqlParameterSource();
+		String query = "DELETE FROM easy_drinks where id=:id;";
+		parameters.addValue("id", id);
+		jdbc.update(query, parameters);
+	}
 }

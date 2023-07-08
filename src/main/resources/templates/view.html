@@ -4,6 +4,36 @@
     <meta charset="UTF-8">
     <title>View</title>
 </head>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .edit-link {
+        padding: 4px 8px;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 4px;
+    }
+</style>
 <body >
 <table>
     <tr>
@@ -14,6 +44,7 @@
         <th>Main 2</th>
         <th>Amount 2</th>
         <th>Directions</th>
+        <th>Actions</th>
 
     </tr>
     <tr th:each="drink:${drinks}">
@@ -24,6 +55,7 @@
         <td th:text="${drink.main2}"></td>
         <td th:text="${drink.amount2}"></td>
         <td th:text="${drink.directions}"></td>
+        <td> <a th:href="@{/edit/{id}(id=${drink.id})}">Edit</a> | <a th:href="@{/delete/{id}(id=${drink.id})}">Delete</a> </td>
     </tr>
 </table>
 
