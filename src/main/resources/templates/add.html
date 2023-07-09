@@ -11,7 +11,7 @@
 
         form {
             width: 300px;
-            margin: 0 auto;
+            margin: 1rem;
         }
 
         label {
@@ -42,9 +42,35 @@
         button[type="submit"]:hover {
             background-color: #45a049;
         }
+              .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 1rem;
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .button-container {
+           display: flex;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
+	<h1>Add a Drink</h1>
+	<div class="button-container">
+    <a href="/view" class="button">View Drinks</a>
+    <br />
+    <a href="/" class="button">Home</a>
+</div>
 <form method="post" th:action="@{/add}" th:object="${drink}">
     <label>Name: <input type="text" th:field="*{name}" /></label><br>
     <label>Main 1: <input type="text" th:field="*{main1}" /></label><br>
