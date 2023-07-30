@@ -1,10 +1,10 @@
-package ca.sheridancollege.sin13014;
+package ca.sheridancollege.sin13014.Assignment3_Manjot_Singh;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DrinksApplicationTests {
+class Assignment3ApplicationTests {
 
 	@Test
 	void contextLoads() {

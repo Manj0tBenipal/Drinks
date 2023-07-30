@@ -2,84 +2,58 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" rel="stylesheet">
     <title>add</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        form {
-            width: 300px;
-            margin: 1rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        button[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #45a049;
-        }
-              .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 1rem;
-            background-color: #4CAF50;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 4px;
-            border: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: #45a049;
-        }
-
-        .button-container {
-           display: flex;
-            margin-top: 20px;
-        }
-    </style>
 </head>
+<style>
+    .form-container {
+        max-width: 400px; /* Change the max-width to 400px */
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+</style>
 <body>
-	<h1>Add a Drink</h1>
-	<div class="button-container">
-    <a href="/view" class="button">View Drinks</a>
-    <br />
-    <a href="/" class="button">Home</a>
-</div>
-<form method="post" th:action="@{/add}" th:object="${drink}">
-    <label>Name: <input type="text" th:field="*{name}" /></label><br>
-    <label>Main 1: <input type="text" th:field="*{main1}" /></label><br>
-    <label>Amount 1: <input type="number" step="0.01" th:field="*{amount1}" /></label><br>
-    <label>Main 2: <input type="text" th:field="*{main2}" /></label><br>
-    <label>Amount 2: <input type="number" step="0.01" th:field="*{amount2}" /></label><br>
-    <label>Directions: <textarea th:field="*{directions}"></textarea></label><br>
-    <label>Image URL: <input type="text" th:field="*{iURL}" /></label><br>
-    <button type="submit">Submit</button>
+<h1>Add a Ticket</h1>
+<form class="login-form" method="post" th:action="@{/add-ticket}" th:object="${ticket}">
+    <label for="address">Address:</label>
+    <select required id="address" class="form-select" th:field="*{address}" aria-label="Default select example">
+    <option selected disabled value="">Open this select menu</option>
+        <option th:each="address : ${addresses}" th:value="${address}" th:text="${address}"></option>
+    </select>
+    <label for="time">Time:</label>
+    <select required id="time" class="form-select" th:field="*{time}" aria-label="Default select example">
+        <option disabled selected value="">Open this select menu</option>
+        <option th:each="time : ${time}" th:value="${time}" th:text="${time}"></option>
+    </select>
+    <label for="user">Users:</label>
+    <select required id="user" class="form-select" th:field="*{userName}" aria-label="Default select example">
+        <option disabled selected value="">Open this select menu</option>
+        <option th:each="user : ${users}" th:value="${user.userName}" th:text="${user.userName}">
+        </option>
+    </select>
+    <label for="user">Date:</label>
+    <select required id="date" class="form-select" th:field="*{date}" aria-label="Default select example">
+        <option disabled selected value="">Open this select menu</option>
+        <option th:each="d: ${date}" th:value="${d}" th:text="${d}"></option>
+    </select>
+    <label for="anime">Anime</label>
+    <select  required id="anime" class="form-select" th:field="*{animeGroup}" aria-label="Default select example">
+        <option disabled selected value="">Open this select menu</option>
+        <option th:each="a: ${anime}" th:value="${a}" th:text="${a}"></option>
+    </select>
+<!--    <label for="price">Price</label>-->
+<!--    <select required id="price" class="form-select" th:field="*{price}" aria-label="Default select example">-->
+<!--        <option disabled selected value="">Open this select menu</option>-->
+<!--        <option th:each="p: ${price}" th:value="${p}" th:text="${p}"></option>-->
+<!--    </select>-->
+    <button type="submit" class="btn btn-primary m-10">Add Ticket</button>
+    <a th:href="@{/}"><button type="button" class="m-10 btn btn-primary">Home</button></a>
+
 </form>
 </body>
 </html>
