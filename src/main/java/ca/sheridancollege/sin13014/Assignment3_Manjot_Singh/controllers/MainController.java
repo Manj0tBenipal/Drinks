@@ -33,11 +33,6 @@ public class MainController {
         return "home";
     }
 
-    @GetMapping("/registerForEvent/**")
-    public String registerUserForEvent(@RequestParam(name = "userName") String userName) {
-        log.info("userName" + userName);
-        return "login";
-    }
 
     @GetMapping("/viewMyTickets/**")
     public String viewMyTickets(@RequestParam(name = "userName") String userName, Model model) {

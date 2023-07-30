@@ -18,42 +18,14 @@ public class SecurityConfig {
     public SecurityConfig(UserDetailsServiceImpl userDetailsService){
         this.userDetailsService =  userDetailsService;
     }
-    //Temporarily create users that will work with Spring Security
-//    @Bean
-//    public InMemoryUserDetailsManager
-//    userDetailsService(PasswordEncoder passwordEncoder) {
-//        UserDetails user = User.withUsername("Customer")
-//                .password(passwordEncoder
-//                        .encode("123"))
-//                .roles("CUSTOMER")
-//                .build();
-//        UserDetails user2 = User.withUsername("Bartender")
-//                .password(passwordEncoder
-//                        .encode("123"))
-//                .roles("CUSTOMER", "BARTENDER")
-//                .build();
-//        return new InMemoryUserDetailsManager(user, user2);
-//    }
-
-    //Create the password encoder needed for encoding user passwords
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        PasswordEncoder encoder =
-//                PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//        return encoder;
-//    }
 
     @Bean
 
     public SecurityFilterChain filerChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .headers().frameOptions().sameOrigin();
+
         http.authorizeHttpRequests((auth) ->
                         auth
-                                //We  provide a requestMatcher for every URL we map
-                                //requestMatcher(HttpMethod, URL).hasRole(ROLE)
-                                //requestMatcher(HttpMethod, URL).hasRole(ROLE1, ROLE2, ....)
-                                //requestMatcher(HttpMethod, URL).permitAll()
+
                                 .requestMatchers(HttpMethod.GET, "/").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/css/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/images/**").permitAll()
@@ -62,6 +34,10 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.GET, "/register").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/addUser").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/viewAllTickets").hasRole("VENDER")
+                                .requestMatchers(HttpMethod.GET, "/edit/**").hasRole("VENDER")
+                                .requestMatchers(HttpMethod.GET, "/delete/**").hasRole("VENDER")
+                                .requestMatchers(HttpMethod.POST, "/add-ticket").hasRole("VENDER")
+                                .requestMatchers(HttpMethod.POST, "/update-ticket").hasRole("VENDER")
 
 
                                 .anyRequest().authenticated())
