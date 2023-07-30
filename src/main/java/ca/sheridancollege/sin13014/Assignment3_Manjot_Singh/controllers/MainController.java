@@ -30,7 +30,7 @@ public class MainController {
 
     @GetMapping("/")
     public String loadRoot() {
-        return "home";
+        return "home.html";
     }
 
 
@@ -38,37 +38,37 @@ public class MainController {
     public String viewMyTickets(@RequestParam(name = "userName") String userName, Model model) {
         ArrayList<Ticket> tickets = ticketRepo.getTicketsByUserName(userName);
         model.addAttribute("tickets", tickets);
-        return "view-tickets";
+        return "view-tickets.html";
     }
 
     @GetMapping("/access-denied")
     public String goAway() {
-        return "access-denied";
+        return "access-denied.html";
     }
 
     @GetMapping("/login")
     public String login() {
-        return "login";
+        return "login.html";
     }
 
     @GetMapping("/register")
     public String registerUser() {
 
-        return "register";
+        return "register.html";
     }
 
     @PostMapping("/addUser")
     public String addUser(@RequestParam String username, @RequestParam String password, BCryptPasswordEncoder passwordEncoder) {
         userRepo.addUser(username, passwordEncoder.encode(password));
         log.info("User added");
-        return "redirect:login";
+        return "redirect:/login";
     }
 
     @GetMapping("/viewAllTickets")
     public String viewAllTickets(Model model) {
         ArrayList<Ticket> tickets = ticketRepo.getAllTickets();
         model.addAttribute("tickets", tickets);
-        return "view-tickets";
+        return "view-tickets.html";
     }
 
     @GetMapping("/add")
@@ -86,7 +86,7 @@ public class MainController {
         model.addAttribute("anime", anime);
         model.addAttribute("price", price);
         model.addAttribute(new Ticket());
-        return "add";
+        return "add.html";
     }
     @PostMapping("/add-ticket")
     public String addTicket(@ModelAttribute Ticket ticket){
@@ -108,7 +108,7 @@ public class MainController {
         model.addAttribute("date", date);
         model.addAttribute("anime", anime);
         model.addAttribute("price", price);
-        return "edit";
+        return "edit.html";
     }
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable  int id){
@@ -135,7 +135,7 @@ public class MainController {
         model.addAttribute("date", date);
         model.addAttribute("anime", anime);
 
-        return "register-for-event";
+        return "register-for-event.html";
     }
 
     @PostMapping("/confirm-guest-ticket")
