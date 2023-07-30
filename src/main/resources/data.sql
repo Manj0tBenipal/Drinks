@@ -1,12 +1,52 @@
-INSERT INTO easy_drinks (name, main1, amount1, main2, amount2, directions, iURL) VALUES
-       ('Blackthorn', 'tonic water', 1.5, 'pineapple juice', 1, 'stir with ice, strain into cocktail glass with lemon twist', 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=957&q=80'),
-       ('Blue Moon', 'soda', 1.5, 'blueberry juice', .75, 'stir with ice, strain into cocktail glass with lemon twist', 'https://hips.hearstapps.com/hmg-prod/images/drinks-to-avoid-1621959532.jpg?crop=0.668xw:1.00xh;0.151xw,0&resize=980:*'),
-       ('Oh My Gosh', 'peach nectar', 1, 'pineapple juice', 1, 'stir with ice, strain into shot glass', 'https://hips.hearstapps.com/hmg-prod/images/orange-juice-pouring-into-glass-royalty-free-image-1621871938.jpg?resize=768:*'),
-       ('Lime Fizz', 'Sprite', 1.5, 'lime juice', .75, 'stir with ice, strain into cocktail glass', 'https://hips.hearstapps.com/hmg-prod/images/glass-of-oat-milk-and-bowl-of-oat-flakes-royalty-free-image-1621872054.jpg?resize=768:*'),
-       ('Kiss on the Lips', 'cherry juice', 2, 'apricot nectar', 7, 'serve over ice with straw', 'https://hips.hearstapps.com/hmg-prod/images/two-glasses-of-classic-margarita-on-the-rocks-and-royalty-free-image-1621872103.jpg?resize=768:*'),
-       ('Hot Gold', 'peach nectar', 3,'orange juice', 6, 'pour hot orange juice in mug and add peach nectar', 'https://hips.hearstapps.com/hmg-prod/images/strawberry-splashing-into-smoothie-royalty-free-image-1621872809.jpg?resize=768:*'),
-       ('Lone Tree', 'soda', 1.5, 'cherry juice', .75, 'stir with ice, strain into cocktail glass', 'https://hips.hearstapps.com/hmg-prod/images/glass-of-carbonated-water-royalty-free-image-1621872879.jpg?resize=768:*'),
-       ('Greyhound', 'soda', 1.5, 'grapefruit juice', 5, 'serve over ice, stir well', 'https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
-       ('Indian Summer', 'apple juice', 2, 'hot tea', 6, 'add juice to mug and top off with hot tea', 'https://images.pexels.com/photos/1484678/pexels-photo-1484678.jpeg?auto=compress&cs=tinysrgb&w=300'),
-       ('Bull Frog', 'iced tea', 1.5, 'lemonade', 5, 'serve over ice with lime slice', 'https://images.pexels.com/photos/342971/pexels-photo-342971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
-       ('Soda and It', 'soda', 2, 'grape juice', 1, 'shake in cocktail glass, no ice', 'https://images.pexels.com/photos/2045362/pexels-photo-2045362.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+
+
+insert into SEC_User (userName, encryptedPassword, ENABLED)
+values ('Jon', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 1);
+
+INSERT INTO SEC_User (userName, encryptedPassword, ENABLED)
+VALUES
+    ('John Doe', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 1),
+    ('Jane Smith', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 1),
+    ('Michael Johnson', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 1),
+    ('Emily Williams', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 1),
+    ('Mark Davis', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 1);
+
+
+
+
+insert into sec_role (roleName)
+values ('ROLE_VENDER');
+
+insert into sec_role (roleName)
+values ('ROLE_GUEST');
+
+
+insert into user_role (userId, roleId)
+values (1, 1);
+
+
+
+insert into user_role (userId, roleId)
+values (2, 2);
+insert into user_role (userId, roleId)
+values (3, 2);
+insert into user_role (userId, roleId)
+values (4, 2);
+insert into user_role (userId, roleId)
+values (5, 2);
+insert into user_role (userId, roleId)
+values (6, 2);
+
+
+INSERT INTO Ticket(username, date, address,price,time, anime_group)
+VALUES ( 'John Doe', 'September 2, 2023',  'The Michener Institute · Toronto, Ontario', 234.98, '9:00AM EDT', 'Jujutsu Kaisen'),
+       ( 'John Doe', 'September 3, 2023',  'Ramada Airport East Hotel Toronto, Ontario',  300.00, '6:00PM EDT', 'Demon Slayer'),
+       ( 'John Doe', 'September 1, 2023',  'Metro Toronto Convention Centre (MTCC), Front Street West, Toronto',  199.98, '9:00PM EDT', 'Attack on Titan'),
+       ( 'Jane Smith', 'September 2, 2023',  'The Michener Institute · Toronto, Ontario',  234.98, '9:00AM EDT', 'Dragon Ball Z'),
+       ( 'Jane Smith', 'September 3, 2023',  'Ramada Airport East Hotel Toronto, Ontario',  300.00, '6:00PM EDT', 'Baki Hanma'),
+       ( 'Michael Johnson', 'September 1, 2023',  'Metro Toronto Convention Centre (MTCC), Front Street West, Toronto',  199.98, '9:00PM EDT', 'Zom 100'),
+       ( 'Emily Williams', 'September 3, 2023',  'Ramada Airport East Hotel Toronto, Ontario', 234.98, '6:00PM EDT', 'Naruto'),
+       ( 'Emily Williams', 'September 1, 2023',  'Metro Toronto Convention Centre (MTCC), Front Street West, Toronto' , 199.98, '9:00PM EDT', 'Tokyo Ghoul'),
+       ( 'Emily Williams', 'September 2, 2023',  'The Michener Institute · Toronto, Ontario',  234.98, '9:00AM EDT', 'Tokyo Revengers'),
+       ( 'Emily Williams', 'September 3, 2023',  'Ramada Airport East Hotel Toronto, Ontario',  300.00, '6:00PM EDT', 'My Hero Academia'),
+       ( 'Mark Davis', 'September 1, 2023',  'Metro Toronto Convention Centre (MTCC), Front Street West, Toronto', 199.98, '9:00PM EDT', 'Hells Paradise');

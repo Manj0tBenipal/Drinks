@@ -1,47 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
+
     <title>Home Page</title>
-    <style>
-        body {
-            background-color: #f1f1f1;
-            font-family: Arial, sans-serif;
-        }
-
-        h1 {
-            text-align: left;
-            color: #333;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 1rem;
-            background-color: #4CAF50;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 4px;
-            border: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: #45a049;
-        }
-
-        .button-container {
-           display: flex;
-            margin-top: 20px;
-        }
-    </style>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" rel="stylesheet">
 </head>
-<body>
-<h1>Drinks</h1>
-<div class="button-container">
-    <a href="/view" class="button">View Drinks</a>
-    <br />
-    <a href="/add" class="button">Add Drinks</a>
+<body class="m-0 p-0">
+<div class="container m-0 p-0 ">
+
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid text-light">
+            <a class="navbar-brand text-light" href="#">Event Hoster</a>
+            <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler" data-bs-target="#navbarSupportedContent"
+                    data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link active text-light" th:href="@{/}">Home</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link text-light" th:href="@{/login}">Login</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link text-light" th:href="@{/register}">Register</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <form method="post" th:action="@{/logout}">
+                            <input class="text-light " type="submit" value="logout"/>
+                        </form>
+
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="hero">
+
+        <div class="anime-info">
+            <div class="anime-info-content">
+
+                <h1 class="anime-title">
+                    Anime Toronto
+                </h1>
+                <div class="anime-statistics">
+              <span class="anime-st-item">
+                Start Date: September 1, 2023
+              </span>
+                    <span class="anime-st-item">
+                End Date: September 3, 2023
+              </span>
+
+                    <span class="anime-st-item">
+                Address: Metro Toronto Convention Centre (MTCC), Front Street West, Toronto
+              </span>
+                </div>
+
+                <p class="description">
+                    Anime Toronto is a multi-day, multi-fandom, Japanese focused event.
+
+                    As fans of Anime and Japanese culture, we truly find joy in putting this event together and aspire to show our gratitude through quality content, unique ideas, constant improvement, and never ending care.
+                </p>
+                <div class="button-wrapper" sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/login}"> <button class="watch-button hero-button">
+                       Register
+                    </button></a>
+                    <a th:href="@{/login}"><button class="details-button hero-button">
+                        Login
+                    </button></a>
+                </div>
+                <div class="button-wrapper" sec:authorize="isAuthenticated() && hasAnyRole('ROLE_GUEST')" >
+                    <a th:href="@{/registerForEvent/{userId}(userName=${#authentication.principal.Username})}"> <button class="watch-button hero-button">
+                        Register
+                    </button></a>
+                    <a th:href="@{/viewMyTickets/{userId}(userName=${#authentication.principal.Username})}"><button class="details-button hero-button">
+                        View Tickets
+                    </button></a>
+
+                </div>
+                <div class="button-wrapper" sec:authorize="isAuthenticated() && hasAnyRole('ROLE_VENDER')" >
+                    <a th:href="@{/viewAllTickets}"> <button class="watch-button hero-button">
+                        View All Tickets
+                    </button></a> <a th:href="@{/add}"><button class="details-button hero-button">
+                    Add Ticket
+                </button></a>
+
+
+                </div>
+            </div>
+        </div>
+
+        <img alt="hero" class="hero-image" th:src="@{/images/hero.jpg}"/>
+    </section>
 </div>
+
+
 </body>
 </html>

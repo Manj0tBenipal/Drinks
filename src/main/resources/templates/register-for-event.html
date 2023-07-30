@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
   <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" rel="stylesheet">
-  <title>edit</title>
+  <title>Register For Event</title>
 </head>
 <body>
-<h1>Edit a Ticket</h1>
-<form class="login-form" method="post" th:action="@{/update-ticket}" th:object="${ticket}">
-  <input type="hidden" th:field="*{id}">
+<h1>Book a Ticket</h1>
+<form class="login-form" method="post" th:action="@{/confirm-guest-ticket}" th:object="${ticket}">
+
   <label for="address">Address:</label>
   <select required id="address" class="form-select" th:field="*{address}" aria-label="Default select example">
     <option selected disabled value="">Open this select menu</option>
@@ -23,8 +23,8 @@
   </select>
   <label for="user">Users:</label>
   <select required id="user" class="form-select" th:field="*{userName}" aria-label="Default select example">
-    <option disabled selected value="">Open this select menu</option>
-    <option th:each="user : ${users}" th:value="${user.userName}" th:text="${user.userName}">
+
+    <option selected  th:value="*{userName}" th:text="*{userName}">
     </option>
   </select>
   <label for="user">Date:</label>
@@ -42,9 +42,9 @@
   <!--        <option disabled selected value="">Open this select menu</option>-->
   <!--        <option th:each="p: ${price}" th:value="${p}" th:text="${p}"></option>-->
   <!--    </select>-->
-  <button type="submit" class="btn btn-primary m-10">Save changes</button>
+  <button type="submit" class="btn btn-primary m-10">Confirm</button>
   <a th:href="@{/}"><button type="button" class="m-10 btn btn-primary">Home</button></a>
 
-</form>
+
 </body>
 </html>
