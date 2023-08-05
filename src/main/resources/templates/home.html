@@ -14,7 +14,7 @@
 
     <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid text-light">
-            <a class="navbar-brand text-light" href="#">Event Hoster</a>
+            <a class="navbar-brand text-light" th:href="@{/}">Event Hoster</a>
             <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                     class="navbar-toggler" data-bs-target="#navbarSupportedContent"
                     data-bs-toggle="collapse" type="button">
@@ -32,8 +32,8 @@
                         <a class="nav-link text-light" th:href="@{/register}">Register</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <form method="post" th:action="@{/logout}">
-                            <input class="text-light " type="submit" value="logout"/>
+                        <form method="post" th:action="@{/logout}" class="logout-form">
+                            <input class="text-light logout " type="submit" value="logout"/>
                         </form>
 
                     </li>

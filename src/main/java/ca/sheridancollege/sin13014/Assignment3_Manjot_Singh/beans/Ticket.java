@@ -18,9 +18,9 @@ public class Ticket {
 
     public void setTime(String time) {
         this.time= time;
-        if(time=="9:00AM EDT"){
+        if(time.equals("9:00AM EDT")){
             this.price = 234.98;
-        }else if(time=="9:00PM EDT"){
+        }else if(time.equals("9:00PM EDT")){
             this.price=199.90;
         }else{
             this.price = 300.00;

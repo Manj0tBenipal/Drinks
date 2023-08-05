@@ -37,6 +37,11 @@ public class MainController {
     @GetMapping("/viewMyTickets/**")
     public String viewMyTickets(@RequestParam(name = "userName") String userName, Model model) {
         ArrayList<Ticket> tickets = ticketRepo.getTicketsByUserName(userName);
+        Double total =0.0;
+        for(Ticket ticket : tickets){
+            total += ticket.getPrice();
+        }
+        model.addAttribute("total", total);
         model.addAttribute("tickets", tickets);
         return "view-tickets.html";
     }
@@ -59,6 +64,14 @@ public class MainController {
 
     @PostMapping("/addUser")
     public String addUser(@RequestParam String username, @RequestParam String password, BCryptPasswordEncoder passwordEncoder) {
+        ArrayList<User> users =  userRepo.getUsers();
+        for(User user : users){
+            log.info(user.getUserName() + ":" + username);
+            if(user.getUserName().equals(username)){
+                log.info("sameUser");
+                return "redirect:/login?ue=true";
+            }
+        }
         userRepo.addUser(username, passwordEncoder.encode(password));
         log.info("User added");
         return "redirect:/login";
@@ -78,13 +91,11 @@ public class MainController {
         String[] addresses = {"The Michener Institute · Toronto, Ontario", "Ramada Airport East Hotel Toronto, Ontario", "Metro Toronto Convention Centre (MTCC), Front Street West, Toronto"};
         String[] date = {"September 1, 2023", "September 2, 2023", "September 3, 2023"};
         String[] anime = {"Jujutsu Kaisen", "Demon Slayer","Attack on Titan", "Dragon Ball Z", "Baki Hanma","Zom 100", "Naruto","Tokyo Ghoul", "Tokyo Revengers", "My Hero Academia", "Hells Paradise"};
-        Double[] price = {234.98, 199.98, 300.00};
         model.addAttribute("addresses", addresses);
         model.addAttribute("users", users);
         model.addAttribute("time", time);
         model.addAttribute("date", date);
         model.addAttribute("anime", anime);
-        model.addAttribute("price", price);
         model.addAttribute(new Ticket());
         return "add.html";
     }

@@ -22,6 +22,9 @@ public class SecurityConfig {
     @Bean
 
     public SecurityFilterChain filerChain(HttpSecurity http) throws Exception {
+        http.csrf().disable();
+        // Allow H2 console to be accessed in frames
+        http.headers().frameOptions().sameOrigin();
 
         http.authorizeHttpRequests((auth) ->
                         auth
@@ -30,7 +33,8 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.GET, "/css/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/images/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/home").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/h2/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/h2/").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/h2/").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/register").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/addUser").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/viewAllTickets").hasRole("VENDER")
@@ -38,6 +42,7 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.GET, "/delete/**").hasRole("VENDER")
                                 .requestMatchers(HttpMethod.POST, "/add-ticket").hasRole("VENDER")
                                 .requestMatchers(HttpMethod.POST, "/update-ticket").hasRole("VENDER")
+                                .requestMatchers(HttpMethod.GET, "/login").permitAll()
 
 
                                 .anyRequest().authenticated())
@@ -45,6 +50,7 @@ public class SecurityConfig {
                         formLogin
                                 .loginPage("/login")
                                 .failureUrl("/login?failed")
+
                                 .permitAll())
                 .logout((logout) ->
                         logout

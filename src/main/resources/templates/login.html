@@ -17,6 +17,9 @@
   <div th:if="${param.logout}" class="error-message text-center text-warning">
     <h3>Logged Out.</h3>
   </div>
+  <div th:if="${param.ue}" class="error-message text-center text-warning">
+    <h3>A user with same username already exists. Please choose another username</h3>
+  </div>
 
   <form th:action="@{/login}" method="post" class="login-form">
     <div class="register-link text-right">

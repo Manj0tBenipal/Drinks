@@ -55,12 +55,17 @@ public class UserRepo {
     }
 
     public void addUser(String userName, String password) {
+        ArrayList<User> users = getUsers();
+        int prevNumberOfUsers = users.size();
         MapSqlParameterSource parameters = new MapSqlParameterSource();
         String query = "insert into SEC_User (userName, encryptedPassword, ENABLED) values(:uname, :pass, TRUE)";
-
         parameters.addValue("uname", userName);
         parameters.addValue("pass", password);
         jdbc.update(query, parameters);
+
+        String addRoleQuery = "insert into user_role(roleId, userId) values(2,:newUid)";
+        parameters.addValue("newUid", prevNumberOfUsers+1);
+        jdbc.update(addRoleQuery, parameters);
 
     }
 
